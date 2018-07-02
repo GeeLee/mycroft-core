@@ -13,10 +13,7 @@
 # limitations under the License.
 #
 import argparse
-
-from speech_recognition import Recognizer
-
-from mycroft.client.speech.mic import MutableMicrophone
+from .audiotest import record
 from mycroft.util import play_wav
 
 """
@@ -25,15 +22,6 @@ A tool for recording X seconds of audio, and then playing them back. Useful
 for testing hardware, and ensures
 compatibility with mycroft recognizer loop code.
 """
-
-
-def record(filename, duration):
-    mic = MutableMicrophone()
-    recognizer = Recognizer()
-    with mic as source:
-        audio = recognizer.record(source, duration=duration)
-        with open(filename, 'wb') as f:
-            f.write(audio.get_wav_data())
 
 
 def main():

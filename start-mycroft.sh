@@ -69,7 +69,6 @@ function name-to-script-path() {
     "cli")             _script=${DIR}/mycroft/client/text/main.py ;;
     "wifi")            _script=${DIR}/mycroft/client/wifisetup/main.py ;;
     "skill_container") _script=${DIR}/mycroft/skills/container.py ;;
-    "audiotest")       _script=${DIR}/mycroft/util/audio_test.py ;;
     "audioaccuracytest") _script=${DIR}/mycroft/audio-accuracy-test/audio_accuracy_test.py ;;
     "sdkdoc")          _script=${DIR}/doc/generate_sdk_docs.py ;;
     "enclosure")       _script=${DIR}/mycroft/client/enclosure/main.py ;;
@@ -189,7 +188,7 @@ case ${_opt} in
     pytest test/integrationtests/skills/discover_tests.py "$@"
     ;;
   "audiotest")
-    launch-process ${_opt}
+    python -m mycroft.util.audio_test "$@"
     ;;
   "audioaccuracytest")
     launch-process ${_opt}

@@ -52,7 +52,7 @@ def required(requirements_file):
 
 
 def find_all_packages(where):
-    packages = find_packages(where=where, exclude=["*test*"])
+    packages = find_packages(where=where, exclude=["test*"])
     return [
         os.path.join(where, pkg.replace(".", os.sep))
         for pkg in packages] + [where]
