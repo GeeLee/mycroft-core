@@ -84,8 +84,10 @@ def sentence_chunker(text, chunk_size, split_by_punc=True):
 
     text_list = text.split()
     # if initial text is 1.3 times chunk size, no need to split
+    # if the chracter count is less then 55
     if len(text_list) <= chunk_size * 1.3:
-        return [text]
+        if len(text) < 55:
+            return [text]
 
     # split text by punctuations if split_by_punc set to true
     # i.e "hello, world" -> ["hello", "world"]
@@ -174,7 +176,6 @@ class Mimic2(RemoteTTS):
             ident (optional): Defaults to None.
         """
         chunks = sentence_chunker(sentence, self.chunk_size)
-        LOG.info(chunks)
         for req in self._requests(chunks):
             try:
                 res = req.result()
